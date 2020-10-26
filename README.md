@@ -9,13 +9,19 @@ __The project is under development!__
 ```python
 import pete_tpl
 
-pete_tpl.init()
-
 engine = pete_tpl.Engine()
-result = engine.render("Hello, {# comment #} world! {{ 2 * 9}}")
+result = engine.render(
+    "Hello,{# comment #} {{ user }}! Number is {{ some_number }}\nCalculation: {{ 2 * 9 }}\nPercentage: {{ percentage }}%",
+    {
+        'user': 'John Doe',
+        'some_number': 4443,
+        'percentage': 23.41234,
+    })
 
 print(result)
-```
 
-## TODO:
-- Pass parameters to template rendering function
+# Output:
+# Hello, John Doe! Number is 4443
+# Calculation: 18
+# Percentage: 23.41234%
+```
