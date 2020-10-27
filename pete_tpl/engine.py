@@ -21,7 +21,8 @@ class Engine:
                                                                         len(cparameters),
                                                                         cparameters_arg))
         output = result.output.decode('utf-8')
-        if 0 == result.error_code:
-            return output
-        else:
-            raise RenderingException(output, result.error_code)
+        exception = None if 0 == result.error_code else RenderingException(output, result.error_code)
+        dll.get_lib().petetpl_free_render_result(result)
+        if exception is not None:
+            raise exception
+        return output
