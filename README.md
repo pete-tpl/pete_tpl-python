@@ -4,6 +4,16 @@ A Python binding for [libpetetpl](https://github.com/pete-tpl/libpetetpl).
 
 __The project is under development!__
 
+## Installation
+
+```bash
+pip install pete-tpl
+# Probably reloading of the shell session is needed
+# e.g. deactivate && source .venv/bin/activate - in case of virtualenv
+petetpl_postinstall.py
+```
+The second command downloads a shared library. Since the `libpetetpl` library is not implemented in C/C++, it cannot be compiled via Python setup tools.
+
 ## Usage
 
 ```python
