@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pete_tpl",
-    version="0.1.9",
+    version="0.1.13",
     author="Sergei Belyakov",
     author_email="1899416+tasmanianfox@users.noreply.github.com",
     description="A template engine inspired by TWIG",
@@ -20,6 +20,9 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
+    ],
+    install_requires=[
+        'requests',
     ],
     python_requires='>=3.6',
     scripts=['scripts/petetpl_postinstall.py'],

@@ -8,6 +8,8 @@ from pete_tpl.c_types import CParameter
 FILE_EXTENSIONS = {
     'linux': 'so'
 }
+
+
 def format_shared_lib_path() -> str:
     extension = FILE_EXTENSIONS.get(OS_NAME)
     if extension is None:
@@ -24,14 +26,16 @@ lib = None
 
 def init():
     global lib
-    if not lib is None:
+    if lib is not None:
         return
     lib = ctypes.cdll.LoadLibrary(PETETPL_SHARED_LIB_PATH)
     lib.petetpl_init()
 
     lib.petetpl_render.restype = ctypes.c_void_p
-    lib.petetpl_render.argtypes = [ctypes.c_uint, ctypes.c_char_p, ctypes.c_int, ctypes.POINTER(CParameter)]
+    lib.petetpl_render.argtypes = [ctypes.c_uint, ctypes.c_char_p,
+                                   ctypes.c_int,
+                                   ctypes.POINTER(CParameter)]
 
 
-def get_lib():
+def get_lib() -> ctypes.CDLL:
     return lib

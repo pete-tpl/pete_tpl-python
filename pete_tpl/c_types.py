@@ -17,7 +17,8 @@ class CParameter(ctypes.Structure):
         ("value_string", ctypes.c_char_p),
     ]
 
-    def from_python_map(parameters: Mapping[str, Parameter]) -> List['CParameter']:
+    def from_python_map(parameters: Mapping[str, Parameter]) \
+            -> List['CParameter']:
         result = []
         for k, v in parameters.items():
             result.append(CParameter.from_python_parameter(k, v))
@@ -29,7 +30,7 @@ class CParameter(ctypes.Structure):
 
     def from_python_parameter(name: str, value: Any) -> 'CParameter':
         result = CParameter()
-        result.name = ctypes.c_char_p(name.encode('utf-8')) 
+        result.name = ctypes.c_char_p(name.encode('utf-8'))
         if isinstance(value, int):
             result.value_int = value
             result.param_type = PARAM_TYPE_INT
